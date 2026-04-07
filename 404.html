@@ -4,11 +4,12 @@
     <meta charset="utf-8" />
     <title>LUXE</title>
     <script>
-      // Single Page App redirect hack for GitHub Pages
-      // When GH Pages returns a 404, this page redirects to index.html
-      // while preserving the path, query, and hash via sessionStorage.
-      var segmentCount = 0; // 0 for root, 1 for subfolder
-      // e.g. for rezimmm.github.io/Luxe-Ecommerce/ segmentCount = 1
+      // SPA redirect hack for GitHub Pages
+      // Auto-detect segmentCount based on current path
+      var segmentCount = 0;
+      if (window.location.pathname.indexOf('/Luxe-Ecommerce/') === 0) {
+        segmentCount = 1;
+      }
 
       var l = window.location;
       l.replace(
