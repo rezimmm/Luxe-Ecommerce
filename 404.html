@@ -7,7 +7,7 @@
       // Single Page App redirect hack for GitHub Pages
       // When GH Pages returns a 404, this page redirects to index.html
       // while preserving the path, query, and hash via sessionStorage.
-      var segmentCount = 1; // number of path segments in your base URL
+      var segmentCount = 0; // 0 for root, 1 for subfolder
       // e.g. for rezimmm.github.io/Luxe-Ecommerce/ segmentCount = 1
 
       var l = window.location;
