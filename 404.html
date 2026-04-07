@@ -5,11 +5,7 @@
     <title>LUXE</title>
     <script>
       // SPA redirect hack for GitHub Pages
-      // Auto-detect segmentCount based on current path
-      var segmentCount = 0;
-      if (window.location.pathname.indexOf('/Luxe-Ecommerce/') === 0) {
-        segmentCount = 1;
-      }
+      var segmentCount = 1; // 1 for subfolder /Luxe-Ecommerce/
 
       var l = window.location;
       l.replace(
