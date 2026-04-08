@@ -2,24 +2,23 @@
 // All shop API calls — uses the same axios instance from api.js
 
 import api from './api';
-
-const SHOP = import.meta.env.VITE_SHOP_API_URL || 'http://localhost:5001/api/';
+import shopApi from "./shopApi";
 
 // ── Products ─────────────────────────────────────────────
 
 export const getProducts = async (params = {}) => {
   const query = new URLSearchParams(params).toString();
-  const { data } = await api.get(`${SHOP}/products?${query}`);
-  return data; // { success, total, page, totalPages, products }
+  const { data } = await shopApi.get(`/products?${query}`);
+  return data;
 };
 
 export const getProduct = async (id) => {
-  const { data } = await api.get(`${SHOP}/products/${id}`);
+  const { data } = await shopApi.get(`/products/${id}`);
   return data.product;
 };
 
 export const getCategories = async () => {
-  const { data } = await api.get(`${SHOP}/products/categories`);
+  const { data } = await shopApi.get(`/products/categories`);
   return data.categories;
 };
 
@@ -36,17 +35,17 @@ export const deleteReview = async (productId, reviewId) => {
 // ── Cart ─────────────────────────────────────────────────
 
 export const getCart = async () => {
-  const { data } = await api.get(`${SHOP}/cart`);
+  const { data } = await shopApi.get(`/cart`);
   return data.cart; // { items, subtotal, totalItems }
 };
 
 export const addToCart = async (productId, size, color, qty = 1) => {
-  const { data } = await api.post(`${SHOP}/cart`, { productId, size, color, qty });
+  const { data } = await shopApi.post(`/cart`, { productId, size, color, qty });
   return data.cart;
 };
 
 export const updateCartItem = async (productId, size, color, qty) => {
-  const { data } = await api.patch(`${SHOP}/cart`, { productId, size, color, qty });
+  const { data } = await shopApi.patch(`/cart`, { productId, size, color, qty });
   return data.cart;
 };
 
@@ -93,12 +92,12 @@ export const clearWishlist = async () => {
 // ── Orders ───────────────────────────────────────────────
 
 export const checkout = async (shippingAddress, paymentMethod = 'razorpay') => {
-  const { data } = await api.post(`${SHOP}/orders/checkout`, { shippingAddress, paymentMethod });
+  const { data } = await shopApi.post(`/orders/checkout`, { shippingAddress, paymentMethod });
   return data; // { order, razorpayOrder } or { order } for COD
 };
 
 export const verifyPayment = async ({ orderId, razorpayOrderId, razorpayPaymentId, razorpaySignature }) => {
-  const { data } = await api.post(`${SHOP}/orders/verify-payment`, {
+  const { data } = await shopApi.post(`/orders/verify-payment`, {
     orderId, razorpayOrderId, razorpayPaymentId, razorpaySignature,
   });
   return data.order;
