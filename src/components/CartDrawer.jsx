@@ -53,7 +53,7 @@ export default function CartDrawer({ isOpen, onClose }) {
                     <div className="flex-grow-1 d-flex flex-column">
                       <div className="d-flex justify-content-between mb-1">
                         <Link to={`/product/${item.id}`} onClick={onClose} className="text-dark text-decoration-none fw-medium small">{item.name}</Link>
-                        <span className="fw-bold text-primary small">${item.price.toFixed(2)}</span>
+                        <span className="fw-bold text-primary small">₹{item.price.toFixed(2)}</span>
                       </div>
                       <p className="small text-muted mb-auto" style={{ fontSize: '0.75rem'}}>
                          {item.size && `Size: ${item.size}`} {item.size && item.color && '|'} {item.color && <span className="d-inline-flex align-items-center gap-1">Color: <span style={{ width: 10, height: 10, borderRadius: '50%', backgroundColor: item.color, display: 'inline-block', border: '1px solid #ddd' }}></span></span>}
@@ -78,7 +78,7 @@ export default function CartDrawer({ isOpen, onClose }) {
               <div className="p-4 bg-light border-top">
                 <div className="d-flex justify-content-between mb-3">
                   <span className="fw-medium text-muted">Subtotal</span>
-                  <span className="fw-bold">${subtotal.toFixed(2)}</span>
+                  <span className="fw-bold">₹{subtotal.toFixed(2)}</span>
                 </div>
                 <button className="btn btn-primary w-100 rounded-2 py-3 fw-bold d-flex align-items-center justify-content-center gap-2 mb-2" onClick={handleCheckout}>
                   View Bag & Checkout <ArrowRight size={18} />

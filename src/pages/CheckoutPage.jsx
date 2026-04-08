@@ -173,7 +173,7 @@ export default function CheckoutPage() {
                 <button type="submit" className="btn btn-primary w-100 py-3 fw-bold rounded-2"
                   disabled={loading || cart.length === 0}>
                   {loading ? <span className="spinner-border spinner-border-sm me-2" /> : null}
-                  {paymentMethod === 'cod' ? 'Place Order' : `Secure Checkout — $${total.toFixed(2)}`}
+                  {paymentMethod === 'cod' ? 'Place Order' : `Secure Checkout — ₹${total.toFixed(2)}`}
                 </button>
               </form>
             </div>
@@ -195,27 +195,27 @@ export default function CheckoutPage() {
                         {` • Qty: ${item.qty}`}
                       </p>
                     </div>
-                    <span className="fw-bold small">${(item.price * item.qty).toFixed(2)}</span>
+                    <span className="fw-bold small">₹{(item.price * item.qty).toFixed(2)}</span>
                   </div>
                 ))}
               </div>
               <hr />
               <div className="d-flex flex-column gap-2 small text-muted mb-3">
                 <div className="d-flex justify-content-between">
-                  <span>Subtotal</span><span className="text-dark">${subtotal.toFixed(2)}</span>
+                  <span>Subtotal</span><span className="text-dark">₹{subtotal.toFixed(2)}</span>
                 </div>
                 <div className="d-flex justify-content-between">
-                  <span>GST (18%)</span><span className="text-dark">${tax.toFixed(2)}</span>
+                  <span>GST (18%)</span><span className="text-dark">₹{tax.toFixed(2)}</span>
                 </div>
                 <div className="d-flex justify-content-between">
                   <span>Shipping</span>
                   <span className={shippingCost === 0 ? 'text-success fw-bold' : 'text-dark'}>
-                    {shippingCost === 0 ? 'Free' : `$${shippingCost.toFixed(2)}`}
+                    {shippingCost === 0 ? 'Free' : `₹${shippingCost.toFixed(2)}`}
                   </span>
                 </div>
               </div>
               <div className="d-flex justify-content-between fw-bold fs-5 border-top pt-3">
-                <span>Total</span><span className="text-primary">${total.toFixed(2)}</span>
+                <span>Total</span><span className="text-primary">₹{total.toFixed(2)}</span>
               </div>
             </div>
           </div>

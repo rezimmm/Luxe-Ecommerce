@@ -68,7 +68,7 @@ export default function CartPage() {
                             </Link>
                             <div>
                                <Link to={`/product/${item.id}`} className="text-dark text-decoration-none fw-bold h6 d-block mb-1">{item.name}</Link>
-                               <span className="text-muted small d-block mb-2 pb-1">${item.price.toFixed(2)}</span>
+                               <span className="text-muted small d-block mb-2 pb-1">₹{item.price.toFixed(2)}</span>
                                
                                <div className="text-muted small d-flex flex-column gap-1" style={{ fontSize: '0.8rem' }}>
                                   {item.size && <span>Size: <span className="text-dark fw-medium">{item.size}</span></span>}
@@ -87,7 +87,7 @@ export default function CartPage() {
                                      <span className="fw-medium px-2 small">{item.qty}</span>
                                      <button className="btn btn-sm text-dark px-2 border-0" onClick={() => incrementQty(item.id, item.size, item.color)}><Plus size={14} /></button>
                                   </div>
-                                  <span className="fw-bold">${(item.price * item.qty).toFixed(2)}</span>
+                                  <span className="fw-bold">₹{(item.price * item.qty).toFixed(2)}</span>
                                </div>
                             </div>
                           </div>
@@ -103,7 +103,7 @@ export default function CartPage() {
 
                           {/* Desktop Total Column */}
                           <div className="d-none d-md-block text-end fw-bold fs-5 text-dark">
-                             ${(item.price * item.qty).toFixed(2)}
+                             ₹{(item.price * item.qty).toFixed(2)}
                           </div>
 
                           {/* Remove Action */}
@@ -128,11 +128,11 @@ export default function CartPage() {
                   <div className="d-flex flex-column gap-3 mb-4 text-muted small">
                      <div className="d-flex justify-content-between">
                         <span>Subtotal</span>
-                        <span className="text-dark fw-medium">${subtotal.toFixed(2)}</span>
+                        <span className="text-dark fw-medium">₹{subtotal.toFixed(2)}</span>
                      </div>
                      <div className="d-flex justify-content-between">
                         <span>Estimated Tax (8%)</span>
-                        <span className="text-dark fw-medium">${taxes.toFixed(2)}</span>
+                        <span className="text-dark fw-medium">₹{taxes.toFixed(2)}</span>
                      </div>
                      <div className="d-flex justify-content-between">
                         <span>Shipping</span>
@@ -142,7 +142,7 @@ export default function CartPage() {
                   
                   <div className="d-flex justify-content-between align-items-center pt-4 border-top mb-4">
                      <span className="fw-bold text-dark h5 mb-0">Total</span>
-                     <span className="fw-bold text-primary h4 mb-0">${total.toFixed(2)}</span>
+                     <span className="fw-bold text-primary h4 mb-0">₹{total.toFixed(2)}</span>
                   </div>
                   
                   <Link to="/checkout" className="btn btn-primary w-100 rounded-2 py-3 fw-bold d-flex align-items-center justify-content-center gap-2 mb-3 shadow-sm hover-opacity text-decoration-none">

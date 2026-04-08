@@ -198,7 +198,7 @@ export default function ProfileDashboard() {
                   <p className="mb-0 small text-muted">{new Date(orders[0].createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</p>
                 </div>
                 <div className="text-end">
-                  <p className="mb-0 fw-bold">${orders[0].total?.toFixed(2)}</p>
+                  <p className="mb-0 fw-bold">₹{orders[0].total?.toFixed(2)}</p>
                   <span className="badge bg-dark-subtle text-dark fw-medium rounded-0 text-uppercase">{orders[0].status}</span>
                 </div>
               </div>
@@ -237,7 +237,7 @@ export default function ProfileDashboard() {
                           {order.status}
                         </span>
                       </td>
-                      <td className="py-4 fw-medium text-dark">${order.total?.toFixed(2)}</td>
+                      <td className="py-4 fw-medium text-dark">₹{order.total?.toFixed(2)}</td>
                       <td className="py-4 text-end">
                         <button className="btn btn-outline-dark btn-sm rounded-0 uppercase py-2 px-3 fw-bold" style={{ fontSize: '0.7rem' }}>View Details</button>
                       </td>
@@ -276,7 +276,7 @@ export default function ProfileDashboard() {
                       </div>
                       <div className="d-flex flex-column flex-grow-1">
                         <h3 className="h6 fw-bold mb-1">{item.name}</h3>
-                        <p className="small text-muted mb-3">${item.price.toFixed(2)}</p>
+                        <p className="small text-muted mb-3">₹{item.price.toFixed(2)}</p>
                         <button
                           onClick={() => handleQuickAdd(item)}
                           className="btn btn-dark w-100 rounded-0 uppercase fw-bold py-2 mt-auto text-white transition-luxury hover-opacity"

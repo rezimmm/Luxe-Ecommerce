@@ -118,8 +118,8 @@ export default function ProductDetail() {
               <h1 className="display-5 fw-bold mb-3 ls-tighter">{product.name}</h1>
               
               <div className="d-flex align-items-center gap-3 mb-4">
-                <span className="fs-4 fw-bold text-dark">${product.price.toFixed(2)}</span>
-                {product.originalPrice && <span className="fs-5 text-muted text-decoration-line-through">${product.originalPrice.toFixed(2)}</span>}
+                <span className="fs-4 fw-bold text-dark">₹{product.price.toFixed(2)}</span>
+                {product.originalPrice \u0026\u0026 \u003cspan className=\"fs-5 text-muted text-decoration-line-through\"\u003e₹{product.originalPrice.toFixed(2)}\u003c/span\u003e}
               </div>
 
               <p className="text-muted lh-lg mb-5" style={{ fontSize: '0.95rem' }}>
@@ -178,7 +178,7 @@ export default function ProductDetail() {
                    className="btn btn-dark w-100 rounded-0 py-3 uppercase fw-bold ls-widest d-flex align-items-center justify-content-center gap-2 hover-opacity"
                    style={{ fontSize: '0.85rem' }}
                  >
-                   Add to Bag <span className="text-light opacity-75">—</span> ${product.price.toFixed(2)}
+                   Add to Bag <span className="text-light opacity-75">—</span> ₹{product.price.toFixed(2)}
                  </button>
                  <button onClick={() => toggleWishlist(product)} className="btn btn-outline-dark w-100 rounded-0 py-3 uppercase fw-bold ls-widest d-flex align-items-center justify-content-center gap-2" style={{ fontSize: '0.85rem' }}><Heart size={18} fill={isInWishlist(product._id || product.id) ? "#ff4757" : "transparent"} color={isInWishlist(product._id || product.id) ? "#ff4757" : "#111"} strokeWidth={2} /> {isInWishlist(product._id || product.id) ? 'Remove from Wishlist' : 'Add to Wishlist'}</button>
               </div>

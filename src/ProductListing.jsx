@@ -142,8 +142,8 @@ function ProductCard({ product, onAddToCart, wishlist, toggleWishlist, cartQty }
           <p className="small text-muted uppercase mb-1" style={{ fontSize: '0.6rem' }}>{product.category}</p>
           <h3 className="h6 mb-1 serif" style={{ fontSize: '1.05rem', letterSpacing: '-0.02em' }}>{product.name}</h3>
           <div className="d-flex align-items-center gap-2 mb-1">
-            <span className="fw-bold fs-6">${product.price.toFixed(2)}</span>
-            {product.originalPrice && <span className="text-muted text-decoration-line-through small">${product.originalPrice.toFixed(2)}</span>}
+            <span className="fw-bold fs-6">₹{product.price.toFixed(2)}</span>
+            {product.originalPrice && <span className="text-muted text-decoration-line-through small">₹{product.originalPrice.toFixed(2)}</span>}
           </div>
           <StarRating rating={product.rating} />
         </div>
@@ -178,7 +178,7 @@ function CartDrawer({ cartItems, onClose, onIncrement, onDecrement, onRemove }) 
                 <div className="flex-grow-1">
                   <div className="d-flex justify-content-between mb-1">
                     <h4 className="serif h6 mb-0">{item.name}</h4>
-                    <span className="fw-bold">${(item.price * item.qty).toFixed(2)}</span>
+                    <span className="fw-bold">₹{(item.price * item.qty).toFixed(2)}</span>
                   </div>
                   <p className="small text-muted mb-3">{item.category}</p>
                   <div className="d-flex align-items-center gap-3">
@@ -199,7 +199,7 @@ function CartDrawer({ cartItems, onClose, onIncrement, onDecrement, onRemove }) 
           <div className="p-4 bg-light border-top">
             <div className="d-flex justify-content-between mb-3">
               <span className="uppercase text-muted" style={{ fontSize: '0.7rem' }}>Subtotal</span>
-              <span className="fw-bold fs-5">${total.toFixed(2)}</span>
+              <span className="fw-bold fs-5">₹{total.toFixed(2)}</span>
             </div>
             <button className="btn btn-primary w-100 rounded-0 p-3 bg-luxe-blue border-0 uppercase fw-bold" style={{ backgroundColor: 'var(--luxe-blue)', fontSize: '0.8rem' }}>Check Out</button>
             <p className="text-center mt-3 mb-0 small text-muted italic serif">Shipping and taxes calculated at checkout.</p>

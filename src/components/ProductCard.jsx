@@ -51,8 +51,8 @@ export default function ProductCard({ product }) {
             <h3 className="h6 mb-1 fw-bold">{product.name}</h3>
           </Link>
           <div className="d-flex align-items-center gap-2 mb-1">
-             <span className="fw-bold text-primary">${product.price.toFixed(2)}</span>
-             {product.originalPrice && <span className="text-muted text-decoration-line-through small" style={{fontSize: '0.8rem'}}>${product.originalPrice.toFixed(2)}</span>}
+             <span className="fw-bold text-primary">₹{product.price.toFixed(2)}</span>
+             {product.originalPrice && <span className="text-muted text-decoration-line-through small" style={{fontSize: '0.8rem'}}>₹{product.originalPrice.toFixed(2)}</span>}
           </div>
         </div>
       </div>
