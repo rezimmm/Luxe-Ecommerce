@@ -55,7 +55,8 @@ export default function Login() {
       setAlert({ type: 'success', msg: 'Welcome back! Redirecting...' });
       setTimeout(() => navigate('/'), 1200);
     } catch (err) {
-      setAlert({ type: 'error', msg: 'Google Sign-In failed. Please try again.' });
+      console.error('❌ Google Auth Frontend Error:', err);
+      setAlert({ type: 'error', msg: err.response?.data?.message || 'Google Sign-In failed. Please try again.' });
     } finally {
       setLoading(false);
     }
@@ -119,6 +120,7 @@ export default function Login() {
             onSuccess={handleGoogleSuccess}
             onError={() => setAlert({ type: 'error', msg: 'Google Sign-In failed.' })}
             useOneTap
+            use_fedcm_for_prompt={false}
             theme="filled_black"
             shape="pill"
             width="320"

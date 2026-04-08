@@ -82,7 +82,7 @@ export default function Home() {
       <style>{`
         .hero-section {
           height: 90vh;
-          background: url('/hero.png') center/cover no-repeat;
+          background: url('${import.meta.env.BASE_URL}hero.png') center/cover no-repeat;
           display: flex;
           align-items: center;
           justify-content: center;

@@ -254,7 +254,7 @@ export default function ProductListing() {
         .nav-link-luxe { color: var(--luxe-charcoal); text-decoration: none; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; transition: opacity 0.2s; }
         .nav-link-luxe:hover { opacity: 0.6; }
         .product-image-hover:hover { transform: scale(1.05); }
-        .hero-section { height: 100vh; background: url('/hero.png') center/cover no-repeat; display: flex; align-items: center; justify-content: center; position: relative; }
+        .hero-section { height: 100vh; background: url('${import.meta.env.BASE_URL}hero.png') center/cover no-repeat; display: flex; align-items: center; justify-content: center; position: relative; }
         .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4)); }
         .navbar-luxe { transition: all 0.4s ease; padding: 1.5rem 0; }
         .navbar-luxe.scrolled { background: white; padding: 1rem 0; border-bottom: 1px solid var(--luxe-border); }

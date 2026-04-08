@@ -3,7 +3,7 @@
 
 import api from './api';
 
-const SHOP = import.meta.env.VITE_SHOP_API_URL || 'http://localhost:5001/api';
+const SHOP = import.meta.env.VITE_SHOP_API_URL || 'http://localhost:5001/api/';
 
 // ── Products ─────────────────────────────────────────────
 
@@ -66,9 +66,9 @@ export const clearCart = async () => {
 export const syncGuestCart = async (cartItems) => {
   const items = cartItems.map(i => ({
     productId: i.id,
-    size:      i.size,
-    color:     i.color,
-    qty:       i.qty,
+    size: i.size,
+    color: i.color,
+    qty: i.qty,
   }));
   const { data } = await api.post(`${SHOP}/cart/sync`, { items });
   return data.cart;
@@ -123,25 +123,25 @@ export const cancelOrder = async (orderId) => {
 // Call this after checkout() returns razorpayOrder
 export const initiateRazorpayPayment = ({ razorpayOrder, order, user, onSuccess, onFailure }) => {
   const options = {
-    key:      razorpayOrder.key,
-    amount:   razorpayOrder.amount,
+    key: razorpayOrder.key,
+    amount: razorpayOrder.amount,
     currency: razorpayOrder.currency,
-    name:     'LUXE',
+    name: 'LUXE',
     description: `Order #${order._id}`,
     order_id: razorpayOrder.id,
     prefill: {
-      name:    user?.name  || '',
-      email:   user?.email || '',
+      name: user?.name || '',
+      email: user?.email || '',
       contact: user?.phone || '',
     },
     theme: { color: '#2563eb' },
     handler: async (response) => {
       try {
         const verified = await verifyPayment({
-          orderId:             order._id,
-          razorpayOrderId:     response.razorpay_order_id,
-          razorpayPaymentId:   response.razorpay_payment_id,
-          razorpaySignature:   response.razorpay_signature,
+          orderId: order._id,
+          razorpayOrderId: response.razorpay_order_id,
+          razorpayPaymentId: response.razorpay_payment_id,
+          razorpaySignature: response.razorpay_signature,
         });
         onSuccess(verified);
       } catch (err) {

@@ -89,22 +89,25 @@ export default function Navbar() {
       >
         <div className="container d-flex align-items-center justify-content-between">
 
-          {/* Mobile Menu Toggle */}
-          <button
-            className="btn btn-link p-0 text-dark d-lg-none border-0"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <Menu size={24} strokeWidth={1.5} />
-          </button>
+          {/* Left: Mobile Menu Toggle / Desktop Links */}
+          <div className="d-flex flex-grow-1 align-items-center">
+            {/* Mobile Nav Toggle */}
+            <button
+              className="btn btn-link p-0 text-dark d-lg-none border-0 hover-opacity"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <Menu size={24} strokeWidth={1.5} />
+            </button>
 
-          {/* Desktop Links Left */}
-          <div className="d-none d-lg-flex gap-5 align-items-center flex-grow-1">
-            <a href="#" onClick={(e) => handleNavClick(e, 'collection-section')} className="luxe-nav-link">Shop</a>
-            <a href="#" onClick={(e) => handleNavClick(e, 'collection-section')} className="luxe-nav-link">Collections</a>
+            {/* Desktop Links */}
+            <div className="d-none d-lg-flex gap-5 align-items-center">
+              <a href="#" onClick={(e) => handleNavClick(e, 'collection-section')} className="luxe-nav-link">Shop</a>
+              <a href="#" onClick={(e) => handleNavClick(e, 'collection-section')} className="luxe-nav-link">Collections</a>
+            </div>
           </div>
 
           {/* Logo Central */}
-          <div className="mx-auto">
+          <div className="mx-auto d-flex justify-content-center flex-shrink-0">
             <Link to="/" className="text-decoration-none d-flex align-items-center gap-2 text-dark">
               <div className="d-flex align-items-center justify-content-center text-primary" style={{ gap: '2px' }}>
                 <div style={{ width: 4, height: 16, backgroundColor: '#2563eb', borderRadius: 2 }}></div>
@@ -116,15 +119,15 @@ export default function Navbar() {
           </div>
 
           {/* Icons Right */}
-          <div className="d-flex gap-4 align-items-center flex-grow-1 justify-content-end">
+          <div className="d-flex gap-3 gap-md-4 align-items-center flex-grow-1 justify-content-end">
             <a href="#" onClick={(e) => handleNavClick(e, 'about-section')} className="luxe-nav-link d-none d-lg-block">About</a>
 
             {/* Search Icon */}
             <button
-              className="btn btn-link p-0 text-dark border-0 hover-opacity"
+              className="btn btn-link p-0 text-dark border-0 hover-opacity d-flex align-items-center"
               onClick={() => setIsSearchOpen(s => !s)}
             >
-              <Search size={20} strokeWidth={1.5} />
+              <Search size={20} className="stroke-current" strokeWidth={1.5} />
             </button>
 
             {/* Search Dropdown */}
@@ -141,7 +144,7 @@ export default function Navbar() {
                     value={searchQuery}
                     onChange={e => setSearchQuery(e.target.value)}
                   />
-                  <button type="button" className="btn p-0 border-0"
+                  <button type="button" className="btn p-0 border-0 flex-shrink-0"
                     onClick={() => { setIsSearchOpen(false); setSearchQuery(''); }}>
                     <X size={20} className="text-muted" />
                   </button>
@@ -150,19 +153,19 @@ export default function Navbar() {
             )}
 
             <button
-              className="btn btn-link p-0 text-dark border-0 position-relative hover-opacity focus-none"
+              className="btn btn-link p-0 text-dark border-0 position-relative hover-opacity focus-none d-flex align-items-center pe-1"
               onClick={() => isAuthenticated ? navigate('/profile?tab=wishlist') : navigate('/login')}
             >
               <Heart size={20} strokeWidth={1.5} fill={wishlist.length > 0 ? "#ff4757" : "transparent"} color={wishlist.length > 0 ? "#ff4757" : "#111"} />
-              {wishlist.length > 0 && <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: '0.6rem' }}>{wishlist.length}</span>}
+              {wishlist.length > 0 && <span className="position-absolute top-0 start-100 translate-middle-y badge rounded-pill bg-danger" style={{ fontSize: '0.6rem', padding: '0.2rem 0.3rem', marginLeft: '-4px' }}>{wishlist.length}</span>}
             </button>
 
-            <button className="btn btn-link p-0 text-dark border-0 position-relative hover-opacity" onClick={() => isAuthenticated ? setCartOpen(true) : navigate('/login')}>
+            <button className="btn btn-link p-0 text-dark border-0 position-relative hover-opacity d-flex align-items-center pe-1" onClick={() => isAuthenticated ? setCartOpen(true) : navigate('/login')}>
               <ShoppingBag size={20} strokeWidth={1.5} />
-              {totalItems > 0 && <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" style={{ fontSize: '0.6rem' }}>{totalItems}</span>}
+              {totalItems > 0 && <span className="position-absolute top-0 start-100 translate-middle-y badge rounded-pill bg-primary" style={{ fontSize: '0.6rem', padding: '0.2rem 0.3rem', marginLeft: '-4px' }}>{totalItems}</span>}
             </button>
 
-            <a href="#" onClick={handleProfileClick} className="d-none d-sm-block hover-opacity">
+            <a href="#" onClick={handleProfileClick} className="hover-opacity ps-1" style={{ marginRight: '-4px' }}>
               <div style={{ width: 28, height: 28, borderRadius: '50%', backgroundColor: '#f0e6e6', overflow: 'hidden', border: '1px solid #ddd' }}>
                 <User size={26} strokeWidth={1} color="#666" style={{ marginTop: '2px' }} />
               </div>
