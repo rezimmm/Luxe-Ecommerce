@@ -72,7 +72,7 @@ export function CartProvider({ children }) {
       return;
     }
     const item = cart.items.find(
-      i => (i.product === id || i.product?._id === id) && i.size === size && i.color === color
+      i => (i.product === id || i.product?._id === id || i.id === id) && i.size === size && i.color === color
     );
     if (!item) return;
     const updated = await updateCartItem(id, size, color, item.qty + 1);
@@ -93,7 +93,7 @@ export function CartProvider({ children }) {
       return;
     }
     const item = cart.items.find(
-      i => (i.product === id || i.product?._id === id) && i.size === size && i.color === color
+      i => (i.product === id || i.product?._id === id || i.id === id) && i.size === size && i.color === color
     );
     if (!item) return;
     const newQty = item.qty - 1;
@@ -145,7 +145,10 @@ export function CartProvider({ children }) {
 
   return (
     <CartContext.Provider value={{
-      cart: cart.items || [],
+      cart: (cart.items || []).map(item => ({
+        ...item,
+        id: item.product || item.id,
+      })),
       subtotal: cart.subtotal || 0,
       totalItems,
       cartLoading,
