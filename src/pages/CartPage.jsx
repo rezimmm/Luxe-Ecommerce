@@ -51,10 +51,12 @@ export default function CartPage() {
 
                  <AnimatePresence>
                    <div className="d-flex flex-column">
-                     {cart.map((item, idx) => (
-                       <motion.div 
-                         layout 
-                         key={`${item.id}-${item.size}-${item.color}`}
+                     {cart.map((item, idx) => {
+                        const itemId = item.product || item.id;
+                        return (
+                        <motion.div 
+                          layout 
+                          key={`${itemId}-${item.size}-${item.color}`}
                          initial={{ opacity: 0, scale: 0.98 }}
                          animate={{ opacity: 1, scale: 1 }}
                          exit={{ opacity: 0, height: 0, padding: 0, margin: 0, overflow: 'hidden' }}
@@ -63,11 +65,11 @@ export default function CartPage() {
                        >
                           {/* Product Column */}
                           <div className="d-flex gap-4 align-items-start align-items-md-center mb-3 mb-md-0">
-                            <Link to={`/product/${item.id}`} className="flex-shrink-0 d-block border" style={{ width: 100, height: 130, backgroundColor: '#f8f9fa' }}>
+                            <Link to={`/product/${itemId}`} className="flex-shrink-0 d-block border" style={{ width: 100, height: 130, backgroundColor: '#f8f9fa' }}>
                               <img src={item.image} alt={item.name} className="w-100 h-100 object-fit-cover mix-blend-multiply" />
                             </Link>
                             <div>
-                               <Link to={`/product/${item.id}`} className="text-dark text-decoration-none fw-bold h6 d-block mb-1">{item.name}</Link>
+                               <Link to={`/product/${itemId}`} className="text-dark text-decoration-none fw-bold h6 d-block mb-1">{item.name}</Link>
                                <span className="text-muted small d-block mb-2 pb-1">₹{item.price.toFixed(2)}</span>
                                
                                <div className="text-muted small d-flex flex-column gap-1" style={{ fontSize: '0.8rem' }}>
@@ -83,9 +85,9 @@ export default function CartPage() {
                                {/* Mobile Only Qty/Total */}
                                <div className="d-md-none mt-3 d-flex justify-content-between align-items-center w-100">
                                   <div className="d-flex align-items-center border rounded-1">
-                                     <button className="btn btn-sm text-dark px-2 border-0" onClick={() => decrementQty(item.id, item.size, item.color)}><Minus size={14} /></button>
+                                     <button className="btn btn-sm text-dark px-2 border-0" onClick={() => decrementQty(itemId, item.size, item.color)}><Minus size={14} /></button>
                                      <span className="fw-medium px-2 small">{item.qty}</span>
-                                     <button className="btn btn-sm text-dark px-2 border-0" onClick={() => incrementQty(item.id, item.size, item.color)}><Plus size={14} /></button>
+                                     <button className="btn btn-sm text-dark px-2 border-0" onClick={() => incrementQty(itemId, item.size, item.color)}><Plus size={14} /></button>
                                   </div>
                                   <span className="fw-bold">₹{(item.price * item.qty).toFixed(2)}</span>
                                </div>
@@ -95,9 +97,9 @@ export default function CartPage() {
                           {/* Desktop Qty Column */}
                           <div className="d-none d-md-flex justify-content-center">
                              <div className="d-flex align-items-center border rounded-1 py-1 px-1">
-                                <button className="btn btn-sm text-dark px-2 border-0 hover-opacity" onClick={() => decrementQty(item.id, item.size, item.color)}><Minus size={14} /></button>
+                                <button className="btn btn-sm text-dark px-2 border-0 hover-opacity" onClick={() => decrementQty(itemId, item.size, item.color)}><Minus size={14} /></button>
                                 <span className="fw-bold px-3 small">{item.qty}</span>
-                                <button className="btn btn-sm text-dark px-2 border-0 hover-opacity" onClick={() => incrementQty(item.id, item.size, item.color)}><Plus size={14} /></button>
+                                <button className="btn btn-sm text-dark px-2 border-0 hover-opacity" onClick={() => incrementQty(itemId, item.size, item.color)}><Plus size={14} /></button>
                              </div>
                           </div>
 
@@ -108,13 +110,14 @@ export default function CartPage() {
 
                           {/* Remove Action */}
                           <div className="text-end ps-3 position-absolute top-0 end-0 p-3 position-md-static">
-                             <button className="btn btn-link text-danger p-0 border-0 hover-opacity" title="Remove Item" onClick={() => removeFromCart(item.id, item.size, item.color)}>
+                             <button className="btn btn-link text-danger p-0 border-0 hover-opacity" title="Remove Item" onClick={() => removeFromCart(itemId, item.size, item.color)}>
                                <i className="bi bi-trash3 fs-5" />
                              </button>
                           </div>
                           
                        </motion.div>
-                     ))}
+                       );
+                     })}
                    </div>
                  </AnimatePresence>
                </div>
