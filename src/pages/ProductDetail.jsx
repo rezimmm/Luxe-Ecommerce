@@ -119,7 +119,7 @@ export default function ProductDetail() {
               
               <div className="d-flex align-items-center gap-3 mb-4">
                 <span className="fs-4 fw-bold text-dark">₹{product.price.toFixed(2)}</span>
-                {product.originalPrice \u0026\u0026 \u003cspan className=\"fs-5 text-muted text-decoration-line-through\"\u003e₹{product.originalPrice.toFixed(2)}\u003c/span\u003e}
+                {product.originalPrice && <span className="fs-5 text-muted text-decoration-line-through">₹{product.originalPrice.toFixed(2)}</span>}
               </div>
 
               <p className="text-muted lh-lg mb-5" style={{ fontSize: '0.95rem' }}>
