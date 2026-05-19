@@ -23,12 +23,12 @@ export const getCategories = async () => {
 };
 
 export const addReview = async (productId, { rating, title, comment }) => {
-  const { data } = await api.post(`${SHOP}/products/${productId}/reviews`, { rating, title, comment });
+  const { data } = await shopApi.post(`/products/${productId}/reviews`, { rating, title, comment });
   return data;
 };
 
 export const deleteReview = async (productId, reviewId) => {
-  const { data } = await api.delete(`${SHOP}/products/${productId}/reviews/${reviewId}`);
+  const { data } = await shopApi.delete(`/products/${productId}/reviews/${reviewId}`);
   return data;
 };
 
@@ -50,14 +50,14 @@ export const updateCartItem = async (productId, size, color, qty) => {
 };
 
 export const removeFromCart = async (productId, size, color) => {
-  const { data } = await api.delete(
-    `${SHOP}/cart/${productId}?size=${encodeURIComponent(size)}&color=${encodeURIComponent(color)}`
+  const { data } = await shopApi.delete(
+    `/cart/${productId}?size=${encodeURIComponent(size)}&color=${encodeURIComponent(color)}`
   );
   return data.cart;
 };
 
 export const clearCart = async () => {
-  await api.delete(`${SHOP}/cart`);
+  await shopApi.delete(`/cart`);
 };
 
 // Sync guest cart to DB after login
@@ -69,24 +69,24 @@ export const syncGuestCart = async (cartItems) => {
     color: i.color,
     qty: i.qty,
   }));
-  const { data } = await api.post(`${SHOP}/cart/sync`, { items });
+  const { data } = await shopApi.post(`/cart/sync`, { items });
   return data.cart;
 };
 
 // ── Wishlist ─────────────────────────────────────────────
 
 export const getWishlist = async () => {
-  const { data } = await api.get(`${SHOP}/wishlist`);
+  const { data } = await shopApi.get(`/wishlist`);
   return data.products; // array of product objects
 };
 
 export const toggleWishlist = async (productId) => {
-  const { data } = await api.post(`${SHOP}/wishlist/${productId}`);
+  const { data } = await shopApi.post(`/wishlist/${productId}`);
   return data; // { action: 'added'|'removed', productId, count }
 };
 
 export const clearWishlist = async () => {
-  await api.delete(`${SHOP}/wishlist`);
+  await shopApi.delete(`/wishlist`);
 };
 
 // ── Orders ───────────────────────────────────────────────
@@ -104,17 +104,17 @@ export const verifyPayment = async ({ orderId, razorpayOrderId, razorpayPaymentI
 };
 
 export const getMyOrders = async (page = 1) => {
-  const { data } = await api.get(`${SHOP}/orders?page=${page}`);
+  const { data } = await shopApi.get(`/orders?page=${page}`);
   return data; // { total, orders }
 };
 
 export const getOrder = async (orderId) => {
-  const { data } = await api.get(`${SHOP}/orders/${orderId}`);
+  const { data } = await shopApi.get(`/orders/${orderId}`);
   return data.order;
 };
 
 export const cancelOrder = async (orderId) => {
-  const { data } = await api.post(`${SHOP}/orders/${orderId}/cancel`);
+  const { data } = await shopApi.post(`/orders/${orderId}/cancel`);
   return data.order;
 };
 
